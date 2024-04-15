@@ -2,6 +2,7 @@ import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Country, CreateCountryInput } from "../entities/Country.entity";
 import CountryService from "../services/country.service";
 
+
 @Resolver(() => Country)
 export default class CountryResolver {
 
@@ -9,6 +10,11 @@ export default class CountryResolver {
     async listCountries(){
         const countries = await new CountryService().list();
         return countries;
+    }
+
+    @Query(() => Country)
+    async findByCode(@Arg("code") code: string ) : Promise<Country | null> {
+        return await new  CountryService().findByCode(code);
     }
     
 
