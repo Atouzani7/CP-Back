@@ -1,6 +1,6 @@
 import { Length } from "class-validator";
 import { Field, ID, InputType, ObjectType } from "type-graphql"; // Importez ObjectType
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType() // Ajoutez ObjectType pour indiquer que c'est un type GraphQL
 @Entity()
@@ -19,8 +19,8 @@ export class Country {
     code: string
 
     @Field()
-    @Column({nullable : true})
-    flag: string
+    @Column({nullable: true})
+    emoji: string
 
 
 
@@ -34,6 +34,7 @@ export class CreateCountryInput {
     @Field()
     code: string;
 
-    @Field({nullable : true})
-    flag?: string
+    @Field()
+    emoji?: string
+
 }

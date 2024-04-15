@@ -14,12 +14,19 @@ export default class CountryService {
         return await this.db.save(newCountry)
     }
 
-    async finddCoutryById(id: string){
+    async finddCountryById(id: string){
         return await this.db.findOne({
             where: { id }
             // relations: {}
         })
     }
+
+    async list() {
+        const countries = await this.db.find({})
+        return countries;
+    }
+
+
 
 
 }

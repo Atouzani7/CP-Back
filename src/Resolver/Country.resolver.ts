@@ -6,7 +6,14 @@ import CountryService from "../services/country.service";
 export default class CountryResolver {
 
     @Query(() => [Country])
-    async findCoutrieById(@Arg('id') id: string) {
+    async listCountries(){
+        const countries = await new CountryService().list();
+        return countries;
+    }
+    
+
+    @Query(() => [Country])
+    async findCountryById(@Arg('id') id: string) {
         return await new Country
     }
 
